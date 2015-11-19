@@ -1,0 +1,9 @@
+c:\users\victo_000\documents\visual studio 2015\Projects\OBStimer\OBStimer\bin\Debug\OBStimer.exe.config
+c:\users\victo_000\documents\visual studio 2015\Projects\OBStimer\OBStimer\bin\Debug\OBStimer.exe
+c:\users\victo_000\documents\visual studio 2015\Projects\OBStimer\OBStimer\bin\Debug\OBStimer.pdb
+c:\users\victo_000\documents\visual studio 2015\Projects\OBStimer\OBStimer\obj\Debug\OBStimer.csprojResolveAssemblyReference.cache
+c:\users\victo_000\documents\visual studio 2015\Projects\OBStimer\OBStimer\obj\Debug\OBStimer.Form1.resources
+c:\users\victo_000\documents\visual studio 2015\Projects\OBStimer\OBStimer\obj\Debug\OBStimer.Properties.Resources.resources
+c:\users\victo_000\documents\visual studio 2015\Projects\OBStimer\OBStimer\obj\Debug\OBStimer.csproj.GenerateResource.Cache
+c:\users\victo_000\documents\visual studio 2015\Projects\OBStimer\OBStimer\obj\Debug\OBStimer.exe
+c:\users\victo_000\documents\visual studio 2015\Projects\OBStimer\OBStimer\obj\Debug\OBStimer.pdb
