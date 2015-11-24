@@ -12,9 +12,11 @@ namespace OBStimer
 {
     public partial class Form1 : Form
     {
-
-        public static int hour, minute, second, temp, temp2, total;
-        public static string text;
+        //Original values that are set at timer start
+        public static int hour, minute, second, totalInSeconds;
+        //Values that are calculated on timer1_tick (all variables store values of seconds)
+        public static int totalHr, totalMinAndSec, totalSec; 
+        public StringBuilder text = new StringBuilder();
 
         public Form1()
         {
@@ -23,12 +25,10 @@ namespace OBStimer
 
         private void hourTB_TextChanged(object sender, EventArgs e)
         {
-            hour = Convert.ToInt32(hourTB.Text);
         }
 
         private void minuteTB_TextChanged(object sender, EventArgs e)
         {
-            minute = Convert.ToInt32(minuteTB.Text);
         }
 
         private void hourTB_KeyPress(object sender, KeyPressEventArgs e)
@@ -57,7 +57,6 @@ namespace OBStimer
 
         private void secondTB_TextChanged(object sender, EventArgs e)
         {
-            second = Convert.ToInt32(secondTB.Text);
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -76,6 +75,9 @@ namespace OBStimer
             else if (timer1.Enabled == false)
             {
                 button1.Text = "Stop";
+                hour = Convert.ToInt32(hourTB.Text);
+                minute = Convert.ToInt32(minuteTB.Text);
+                second = Convert.ToInt32(secondTB.Text);
                 convertToSeconds();
                 timer1.Enabled = true;
                 hourTB.ReadOnly = true;
@@ -89,22 +91,21 @@ namespace OBStimer
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            if (total >= 0) { 
-                total -= 1;
-                temp = total % 3600;
-                temp2 = total / 3600;
-                hourTB.Text = Convert.ToString(temp2);
-                text += Convert.ToString(temp2);
-                text += " : ";
-                temp2 = temp / 60;
-                minuteTB.Text = Convert.ToString(temp2);
-                text += Convert.ToString(temp2);
-                text += " : ";
-                temp = temp % 60;
-                secondTB.Text = Convert.ToString(temp);
-                text += Convert.ToString(temp);
-                System.IO.File.WriteAllText(@"countdown.txt", text);
-                text = "";
+            if (totalInSeconds >= 0) {
+                totalInSeconds -= 1;
+                totalMinAndSec = totalInSeconds % 3600;
+                totalHr = totalInSeconds / 3600;
+                hourTB.Text = Convert.ToString(totalHr);
+                text.Append(Convert.ToString(totalHr));
+                text.Append(" : ");
+                minuteTB.Text = Convert.ToString(totalMinAndSec / 60);
+                text.Append(Convert.ToString(totalMinAndSec / 60));
+                text.Append(" : ");
+                totalSec = totalMinAndSec % 60;
+                secondTB.Text = Convert.ToString(totalSec);
+                text.Append(Convert.ToString(totalSec));
+                System.IO.File.WriteAllText(@"countdown.txt", text.ToString());
+                text.Clear();
             } else
             {
                 hourTB.BackColor = Color.IndianRed;
@@ -114,7 +115,7 @@ namespace OBStimer
         }
         public static void convertToSeconds()
         {
-            total = (hour * 3600) + (minute * 60) + second;
+            totalInSeconds = (hour * 3600) + (minute * 60) + second;
         }
     }
 }
